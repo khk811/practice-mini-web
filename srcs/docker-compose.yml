@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+    react-app:
+        build:
+            context: ./react-app
+            dockerfile: Dockerfile
+        ports:
+            - "3000:443"
+        depends_on:
+            - firebase-emulator
+
+    firebase-emulator:
+        build:
+            context: ./firebase
+            dockerfile: Dockerfile
+        ports:
+            - "4000:4000"
+            - "8080:8080"
+        volumes:
+            - firebase-data:/firebase-data
+
+volumes:
+    firebase-data:
