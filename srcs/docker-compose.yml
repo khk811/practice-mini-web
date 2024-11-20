@@ -7,6 +7,8 @@ services:
             dockerfile: Dockerfile
         ports:
             - "3000:443"
+        networks:
+            - firebase_network
         depends_on:
             - firebase-emulator
 
@@ -15,10 +17,16 @@ services:
             context: ./firebase
             dockerfile: Dockerfile
         ports:
-            - "4000:4000"
             - "8080:8080"
+            - "4500:4500"
+        networks:
+            - firebase_network
         volumes:
             - firebase-data:/firebase-data
+
+networks:
+    firebase_network:
+        driver: bridge
 
 volumes:
     firebase-data:

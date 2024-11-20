@@ -22,6 +22,7 @@ RUN npm run build
 # nginx 설치 및 빌드 결과 복사
 RUN apk add --no-cache nginx
 COPY nginx.conf /etc/nginx/nginx.conf
+RUN mkdir -p /usr/share/nginx/html
 RUN cp -r build/* /usr/share/nginx/html/
 
 # nginx 실행
